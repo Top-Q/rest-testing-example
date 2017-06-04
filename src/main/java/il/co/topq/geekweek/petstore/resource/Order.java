@@ -1,8 +1,10 @@
-package il.co.topq.geekweek.resource;
+package il.co.topq.geekweek.petstore.resource;
 
 import java.io.IOException;
 
-import il.co.topq.geekweek.model.OrderModel;
+import il.co.topq.geekweek.infra.AbstractResource;
+import il.co.topq.geekweek.infra.EntityResponse;
+import il.co.topq.geekweek.petstore.model.OrderModel;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -11,10 +13,18 @@ import okhttp3.Response;
 
 public class Order extends AbstractResource {
 
+	private Integer id;
+	
+	public Order(OkHttpClient client, String baseUrl, int id) {
+		super(client, baseUrl);
+		this.id = id;
+	}
+
 	public Order(OkHttpClient client, String baseUrl) {
 		super(client, baseUrl);
 	}
 
+	
 	public Response post(String orderJson) throws IOException {
 		MediaType mediaType = MediaType.parse("application/json");
 		RequestBody body = RequestBody.create(mediaType, orderJson);
@@ -36,7 +46,10 @@ public class Order extends AbstractResource {
 		return post(mapper.writeValueAsString(order));
 	}
 
-	public ResourceResponse<OrderModel> get(int id) throws IOException {
+	public EntityResponse<OrderModel> get() throws IOException {
+		if (null == id){
+			throw new IllegalStateException("Id was not set");
+		}
 		// @formatter:off
 		Request request = new Request.Builder()
 		   .url(baseUrl + "store/order/" + id)
@@ -46,10 +59,14 @@ public class Order extends AbstractResource {
 		// @formatter:on
 
 		Response response = client.newCall(request).execute();
-		return new ResourceResponse<OrderModel>(response, OrderModel.class);
+		return new EntityResponse<OrderModel>(response, OrderModel.class);
 	}
 
-	public Response delete(int id) throws IOException {
+	public Response delete() throws IOException {
+		if (null == id){
+			throw new IllegalStateException("Id was not set");
+		}
+
 		// @formatter:off
 		Request request = new Request.Builder()
 		   .url(baseUrl + "store/order/" + id)

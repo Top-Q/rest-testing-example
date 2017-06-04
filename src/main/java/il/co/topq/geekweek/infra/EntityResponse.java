@@ -1,4 +1,4 @@
-package il.co.topq.geekweek.resource;
+package il.co.topq.geekweek.infra;
 
 import java.io.IOException;
 
@@ -8,13 +8,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import okhttp3.Response;
 
-public class ResourceResponse<T> {
+public class EntityResponse<T> {
 
 	private final Response response;
 
 	private final Class<T> clazz;
 
-	public ResourceResponse(Response response, Class<T> clazz)
+	public EntityResponse(Response response, Class<T> clazz)
 			throws JsonParseException, JsonMappingException, IOException {
 		this.response = response;
 		this.clazz = clazz;

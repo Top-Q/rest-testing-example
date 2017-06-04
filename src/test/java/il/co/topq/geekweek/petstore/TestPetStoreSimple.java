@@ -1,8 +1,7 @@
-package il.co.topq.geekweek;
+package il.co.topq.geekweek.petstore;
 
 import java.io.IOException;
-
-import org.junit.Assert;
+import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -40,7 +39,7 @@ public class TestPetStoreSimple {
 		// @formatter:on
 
 		Response response = client.newCall(request).execute();
-		Assert.assertEquals(200, response.code());
+		assertEquals(200, response.code());
 
 		mediaType = MediaType.parse("application/json");
 		body = RequestBody.create(mediaType, ADD_ORDER_REQ);
@@ -55,7 +54,7 @@ public class TestPetStoreSimple {
 		// @formatter:on
 
 		response = client.newCall(request).execute();
-		Assert.assertEquals(200, response.code());
+		assertEquals(200, response.code());
 		
 		// @formatter:off
 		request = new Request.Builder()
@@ -66,7 +65,7 @@ public class TestPetStoreSimple {
 		// @formatter:on
 
 		response = client.newCall(request).execute();
-		Assert.assertEquals(200, response.code());
+		assertEquals(200, response.code());
 		
 
 	}

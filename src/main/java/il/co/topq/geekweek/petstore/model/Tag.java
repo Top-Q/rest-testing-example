@@ -1,5 +1,5 @@
 
-package il.co.topq.geekweek.model;
+package il.co.topq.geekweek.petstore.model;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -20,6 +20,10 @@ public class Body {
 		String newBodyString = bodyString.replaceAll("\\$\\{" + key + "\\}", value);
 		return new Body(newBodyString);
 	}
+	
+	public Body setAll(String key, int value) {
+		return setAll(key, value + "");
+	}
 
 	public RequestBody asRequest() {
 		MediaType mediaType = MediaType.parse("application/json");

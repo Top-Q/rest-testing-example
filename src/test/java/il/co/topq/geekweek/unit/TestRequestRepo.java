@@ -1,4 +1,4 @@
-package il.co.topq.geekweek;
+package il.co.topq.geekweek.unit;
 
 import java.io.IOException;
 
@@ -18,22 +18,16 @@ public class TestRequestRepo {
 	}
 
 	@Test
-	public void testGetRequestBodyAsString() throws IOException {
-		String requestString = repo.get("pet").asString();
-		Assert.assertNotNull(requestString);
-	}
-
-	@Test
 	public void testSetFirstKeyInRequest() throws IOException {
-		String requestString = repo.get("pet").setFirst("name", "Piky").asString();
+		String requestString = repo.get("pet").setFirst("name", "Piky").setAll("id", "3").asString();
 		Assert.assertTrue(requestString.contains("Piky"));
 	}
 
 	@Test
 	public void testSetAllKeysInRequest() throws IOException {
-		String requestString = repo.get("pet").setAll("id", "3").asString();
+		String requestString = repo.get("pet").setFirst("name", "Piky").setAll("id", "3").asString();
 		Assert.assertTrue(requestString.indexOf('3') == 12);
-		Assert.assertTrue(requestString.lastIndexOf('3') == 171);
+		Assert.assertTrue(requestString.lastIndexOf('3') == 168);
 	}
 
 	@Test(expected = IllegalStateException.class)

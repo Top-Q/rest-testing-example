@@ -1,4 +1,4 @@
-package il.co.topq.geekweek.resource;
+package il.co.topq.geekweek.petstore.resource;
 
 import okhttp3.OkHttpClient;
 
@@ -16,6 +16,11 @@ public class PetStore {
 	public Pet pet() {
 		return new Pet(client, baseUrl);
 	}
+	
+	public Pet pet(int id) {
+		return new Pet(client, baseUrl, id);
+	}
+
 
 	public Store store() {
 		return new Store(client, baseUrl);

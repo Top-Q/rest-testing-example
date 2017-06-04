@@ -1,4 +1,4 @@
-package il.co.topq.geekweek.resource;
+package il.co.topq.geekweek.infra;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 

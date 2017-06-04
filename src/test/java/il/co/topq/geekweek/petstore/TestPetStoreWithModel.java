@@ -1,13 +1,13 @@
-package il.co.topq.geekweek;
+package il.co.topq.geekweek.petstore;
 
-import org.junit.Assert;
+import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
-import il.co.topq.geekweek.model.Category;
-import il.co.topq.geekweek.model.OrderModel;
-import il.co.topq.geekweek.model.PetModel;
-import il.co.topq.geekweek.resource.PetStore;
+import il.co.topq.geekweek.petstore.model.Category;
+import il.co.topq.geekweek.petstore.model.OrderModel;
+import il.co.topq.geekweek.petstore.model.PetModel;
+import il.co.topq.geekweek.petstore.resource.PetStore;
 import okhttp3.Response;
 
 public class TestPetStoreWithModel {
@@ -29,7 +29,7 @@ public class TestPetStoreWithModel {
 		pet.setStatus("available");
 		
 		Response response = petStore.pet().post(pet);
-		Assert.assertEquals(200, response.code());
+		assertEquals(200, response.code());
 		
 		OrderModel order = new OrderModel();
 		order.setId(1);
@@ -40,14 +40,14 @@ public class TestPetStoreWithModel {
 		order.setComplete(true);
 		
 		response = petStore.store().order().post(order);
-		Assert.assertEquals(200, response.code());
+		assertEquals(200, response.code());
 		
-		order = petStore.store().order().get(1).asObject();
-		Assert.assertEquals(true, order.getComplete());
+		order = petStore.store().order(1).get().asObject();
+		assertEquals(true, order.getComplete());
 		
-		response = petStore.store().order().delete(1);
-		Assert.assertEquals(200, response.code());
-		Assert.assertEquals("OK", response.message());
+		response = petStore.store().order(1).delete();
+		assertEquals(200, response.code());
+		assertEquals("OK", response.message());
 		
 		
 		
