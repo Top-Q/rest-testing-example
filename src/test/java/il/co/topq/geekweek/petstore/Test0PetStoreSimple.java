@@ -11,13 +11,13 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class TestPetStoreSimple {
+public class Test0PetStoreSimple {
 
 	private OkHttpClient client;
 
-	private final static String ADD_PET_REQ = "{\r\n  \"id\": 1,\r\n  \"category\": {\r\n    \"id\": 0,\r\n    \"name\": \"string\"\r\n  },\r\n  \"name\": \"doggie\",\r\n  \"photoUrls\": [\r\n    \"string\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 0,\r\n      \"name\": \"string\"\r\n    }\r\n  ],\r\n  \"status\": \"available\"\r\n}";
+	private final static String ADD_PET_REQ = "{\"id\": 1,\"category\": {\"id\": 0,\"name\": \"string\"},\"name\": \"doggie\",\"photoUrls\": [\"string\"],\"tags\": [{ \"id\": 0,\"name\": \"string\"}], \"status\": \"available\"}";
 
-	private final static String ADD_ORDER_REQ = "{\r\n  \"id\": 1,\r\n  \"petId\": 1,\r\n  \"quantity\": 1,\r\n  \"shipDate\": \"2017-05-23T07:15:51.126Z\",\r\n  \"status\": \"placed\",\r\n  \"complete\": true\r\n}";
+	private final static String ADD_ORDER_REQ = "{   \"id\": 1,   \"petId\": 1,   \"quantity\": 1,   \"shipDate\": \"2017-05-23T07:15:51.126Z\",   \"status\": \"placed\",   \"complete\": true }";
 
 	@Before
 	public void setup() {

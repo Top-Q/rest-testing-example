@@ -9,7 +9,7 @@ import il.co.topq.geekweek.petstore.model.OrderModel;
 import il.co.topq.geekweek.petstore.resource.PetStore;
 import okhttp3.Response;
 
-public class TestPetStoreWithRequestRepository {
+public class Test4PetStoreWithRequestRepository {
 	private PetStore petStore;
 
 	private RequestBodyRepository repo;

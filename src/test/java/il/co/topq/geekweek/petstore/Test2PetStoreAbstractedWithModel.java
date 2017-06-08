@@ -10,7 +10,7 @@ import il.co.topq.geekweek.petstore.model.PetModel;
 import il.co.topq.geekweek.petstore.resource.PetStore;
 import okhttp3.Response;
 
-public class TestPetStoreWithModel {
+public class Test2PetStoreAbstractedWithModel {
 	
 	private PetStore petStore;
 	
