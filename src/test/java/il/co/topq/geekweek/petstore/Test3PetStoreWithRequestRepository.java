@@ -1,18 +1,15 @@
 package il.co.topq.geekweek.petstore;
 
-import static com.jayway.jsonpath.matchers.JsonPathMatchers.hasJsonPath;
-import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
-
 import org.junit.Before;
 import org.junit.Test;
 
 import il.co.topq.geekweek.infra.RequestBodyRepository;
+import il.co.topq.geekweek.petstore.model.OrderModel;
 import il.co.topq.geekweek.petstore.resource.PetStore;
 import okhttp3.Response;
 
-public class Test5PetStoreWithRequestRepositoryAndjsonPath {
+public class Test3PetStoreWithRequestRepository {
 	private PetStore petStore;
 
 	private RequestBodyRepository repo;
@@ -48,9 +45,8 @@ public class Test5PetStoreWithRequestRepositoryAndjsonPath {
 		response = petStore.store().order().post(orderString);
 		assertEquals(200, response.code());
 
-		String order = petStore.store().order(1).get().asString();
-
-		assertThat(order, hasJsonPath("$.complete", equalTo(true)));
+		OrderModel order = petStore.store().order(1).get().asObject();
+		assertEquals(true, order.getComplete());
 
 		response = petStore.store().order(1).delete();
 		assertEquals(200, response.code());

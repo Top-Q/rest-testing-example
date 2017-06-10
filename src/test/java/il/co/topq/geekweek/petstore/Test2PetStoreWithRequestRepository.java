@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import il.co.topq.geekweek.infra.RequestBodyRepository;
 import il.co.topq.geekweek.petstore.model.Category;
 import il.co.topq.geekweek.petstore.model.OrderModel;
 import il.co.topq.geekweek.petstore.model.PetModel;
@@ -18,31 +19,31 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class Test1PetStoreWithModel {
+public class Test2PetStoreWithRequestRepository {
 
 	private OkHttpClient client;
 	
-	private ObjectMapper mapper;
+	private RequestBodyRepository repo;
 
 
 	@Before
 	public void setup() {
 		client = new OkHttpClient();
-		mapper = new ObjectMapper();
+		repo = new RequestBodyRepository();
 	}
 
 	@Test
 	public void testAddOrder() throws IOException {
-		PetModel pet = new PetModel();
-		pet.setId(1);
-		pet.setName("Piki");
-		pet.setStatus("available");
-		Category category = new Category();
-		category.setId(1);
-		pet.setCategory(category);
-		
+		// @formatter:off
+		String petString = repo
+				.get("pet")
+				.setFirst("name", "Piky")
+				.setAll("id", "1")
+				.asString();
+		// @formatter:on
+
 		MediaType mediaType = MediaType.parse("application/json");
-		RequestBody body = RequestBody.create(mediaType, mapper.writeValueAsString(pet));
+		RequestBody body = RequestBody.create(mediaType, petString);
 
 		// @formatter:off
 		Request request = new Request.Builder()
@@ -56,17 +57,18 @@ public class Test1PetStoreWithModel {
 		Response response = client.newCall(request).execute();
 		assertEquals(200, response.code());
 
-		OrderModel order = new OrderModel();
-		order.setId(1);
-		order.setPetId(1);
-		order.setQuantity(1);
-		order.setShipDate("2018-06-04T07:22:38.179Z");
-		order.setStatus("placed");
-		order.setComplete(true);
+		// @formatter:off
+		String orderString = repo
+				.get("order")
+				.setFirst("id", "1")
+				.setFirst("petId", "1")
+				.asString();
+		// @formatter:on
+
 		
 		
 		mediaType = MediaType.parse("application/json");
-		body = RequestBody.create(mediaType, mapper.writeValueAsString(order));
+		body = RequestBody.create(mediaType, orderString);
 
 		// @formatter:off
 		request = new Request.Builder()
