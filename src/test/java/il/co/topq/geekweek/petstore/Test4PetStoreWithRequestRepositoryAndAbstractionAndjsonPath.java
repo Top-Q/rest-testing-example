@@ -12,7 +12,7 @@ import il.co.topq.geekweek.infra.RequestBodyRepository;
 import il.co.topq.geekweek.petstore.resource.PetStore;
 import okhttp3.Response;
 
-public class Test4PetStoreWithRequestRepositoryAndjsonPath {
+public class Test4PetStoreWithRequestRepositoryAndAbstractionAndjsonPath {
 	private PetStore petStore;
 
 	private RequestBodyRepository repo;

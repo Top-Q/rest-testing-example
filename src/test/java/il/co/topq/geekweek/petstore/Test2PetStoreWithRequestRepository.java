@@ -7,12 +7,7 @@ import java.io.IOException;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import il.co.topq.geekweek.infra.RequestBodyRepository;
-import il.co.topq.geekweek.petstore.model.Category;
-import il.co.topq.geekweek.petstore.model.OrderModel;
-import il.co.topq.geekweek.petstore.model.PetModel;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
